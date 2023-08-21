@@ -9,18 +9,13 @@ from pages.base_page import BasePage
 
 class HomePage(BasePage, HomePageObjects):
 
-    RED = '\033[91m'
-    GREEN = '\033[92m'
-    RESET = '\033[0m'
-
     def __init__(self, driver):
         super().__init__(driver)
 
     def open_page(self):
-        super().open(super().url)
-        self.driver.implicitly_wait(5)
-        super().accept_cookies(super().cookies_accept_button_locator)
-        self.driver.implicitly_wait(10)
+        super().open(super().url)  #opens the inherited URL
+        self.driver.implicitly_wait(5)  #waits for elements to load
+        super().accept_cookies(super().cookies_accept_button_locator)  #Clicks on "Accept" cookies button
 
     def search_for_item(self):
         super().input_text(super().search_box_locator, super().item)  #inserts a text in the search box

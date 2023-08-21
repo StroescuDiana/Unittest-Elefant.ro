@@ -36,16 +36,19 @@ class TestsFrom5To6(unittest.TestCase, BasePage, LoginPageObjects):
         elefant_ro.click_account()  #Test 5
 
         login_page = LoginPage(self.driver)
+        #Checks if the redirected page is the same as the expected login page
         assert login_page.check_if_redirected_to_login_page() == super().log_in_url, f"Nu te afli pe pagina de conectare. Va aflati pe {login_page.check_if_redirected_to_login_page}"
 
-        actual_url = super().get_page_url()
+        actual_url = super().get_page_url()  #unsuccessful URL
         expected_url = super().log_in_successful_url
-        assert not actual_url == expected_url, "Nu s-a putut realiza conectarea in cont. Sunteti pe pagina de login."  #Test 5.1
+        #Checks that the login was unsuccessful
+        assert not actual_url == expected_url, "Te-ai logat cu succes in cont!"  #Test 5.1
 
+        #Checks that the current error text is the same as the expected one
         assert login_page.login_with_invalid_credentials() == super().expected_error, f"Mesajul {login_page.login_with_invalid_credentials()} nu este la fel ca cel asteptat {super().expected_error}"  #Test 5.2
         print(f"{self.GREEN}Mesajul este cel asteptat.{self.RESET}")
 
-        login_page.invalid_email_login()
+        login_page.invalid_email_login()  #Test 6
         assert not login_page.visibility_of_conectare_btn() == True, "Butonul 'CONECTARE' nu este dezactivat."  #Test 6
         print(f"{self.GREEN}Butonul 'CONECTARE' este dezactivat.{self.RESET}")
 
