@@ -22,9 +22,6 @@ class BasePage:
         wait = WebDriverWait(self.driver, time)
         wait.until(EC.presence_of_element_located(locator))
 
-    def accept_cookies(self, locator: tuple):
-        self.find(locator).click()
-
     def input_text(self, locator: tuple, message: str):
         return self.find(locator).send_keys(message)
 
