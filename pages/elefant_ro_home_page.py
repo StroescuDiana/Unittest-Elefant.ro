@@ -15,7 +15,7 @@ class HomePage(BasePage, HomePageObjects):
     def open_page(self):
         super().open(super().url)  #opens the inherited URL
         self.driver.implicitly_wait(5)  #waits for elements to load
-        super().accept_cookies(super().cookies_accept_button_locator)  #Clicks on "Accept" cookies button
+        super().click(super().cookies_accept_button_locator)  #Clicks on "Accept" cookies button
 
     def search_for_item(self):
         super().input_text(super().search_box_locator, super().item)  #inserts a text in the search box
